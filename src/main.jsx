@@ -11,6 +11,7 @@ import theme from "./theme/theme";
 import SettingsProvider from "./contexts/settingsContext";
 
 import Chats from "./pages/dashBoard/Chats";
+import GenerallApp from "./pages/dashBoard/GenerallApp";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     element: <DashBoard />,
     children:[{
       index:true,
-      element:<Chats/>
+      element:<GenerallApp/>
     }]
   },
 ]);
