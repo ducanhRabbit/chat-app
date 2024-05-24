@@ -69,14 +69,13 @@ function Chats() {
         <Box
             sx={{
                 height: '100%',
-                width: 384,
-                backgroundColor: '#F8FAFF',
+                width: 320,
+                backgroundColor: theme.palette.mode === 'light' ? '#F8FAFF' : theme.palette.background.paper,
                 boxShadow: "0px 0px 2px rgba(0, 0, 0, 0.25)"
-                
+
             }}>
             <Stack spacing={2} p={3} sx={{
-                maxHeight:'100vh',
-                overflow:'auto'
+                maxHeight: '100vh',
             }}>
                 <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                     <Typography variant='h4' component={'h4'} sx={{
@@ -136,67 +135,19 @@ function Chats() {
                     </Stack>
                     <Divider></Divider>
                 </Stack>
-                <Stack spacing={2}>
-                    <Typography sx={{
+                <Stack spacing={2} direction={'column'} overflow={'scroll'}>
+                    <Stack spacing={2}>
+                        <Typography sx={{
 
-                    }} variant='h7'>Pinned</Typography>
+                        }} variant='subtitle2'>Pinned</Typography>
 
-                    {/* Chat element */}
+                        {/* Chat element */}
 
-                    <Stack p={2} direction={'row'}
-                        alignItems={"center"}
-                        justifyContent="space-between"
-                        sx={{
-                            backgroundColor: '#F8FAFF',
-
-                        }}>
-                        <Stack spacing={2} direction={'row'}>
-                            <StyledBadge overlap="circular"
-                                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                                variant="dot">
-                                <Avatar src={faker.image.avatar()}></Avatar>
-                            </StyledBadge>
-                            <Stack spacing={0.3}>
-                                <Typography variant="subtitle2">SAM</Typography>
-                                <Typography variant="caption">Lorem ipsum dolor si</Typography>
-                            </Stack>
-                        </Stack>
-                    </Stack>
-                    <Stack p={2} direction={'row'}
-                        alignItems={"center"}
-                        justifyContent="space-between"
-                        sx={{
-                            backgroundColor: '#F8FAFF',
-
-                        }}>
-                        <Stack spacing={2} direction={'row'}>
-                            <StyledBadge overlap="circular"
-                                anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-                                variant="dot">
-                                <Avatar src={faker.image.avatar()}></Avatar>
-                            </StyledBadge>
-                            <Stack spacing={0.3}>
-                                <Typography variant="subtitle2">SAM</Typography>
-                                <Typography variant="caption">Lorem ipsum dolor si</Typography>
-                            </Stack>
-                        </Stack>
-                    </Stack>
-                </Stack>
-                <Stack spacing={2}>
-                    <Typography sx={{
-
-                    }} variant='h7'>All chats</Typography>
-
-                    {/* Chat element */}
-                    {ChatList.filter((chat) => !chat.pinned).map((chat, index) => {
-                        return <Stack direction={'row'}
+                        <Stack p={2} direction={'row'}
                             alignItems={"center"}
                             justifyContent="space-between"
-                            p={2}
-                            borderRadius={2}
                             sx={{
-                                
-                                backgroundColor: '#fff',
+                                backgroundColor: '#F8FAFF',
 
                             }}>
                             <Stack spacing={2} direction={'row'}>
@@ -206,21 +157,71 @@ function Chats() {
                                     <Avatar src={faker.image.avatar()}></Avatar>
                                 </StyledBadge>
                                 <Stack spacing={0.3}>
-                                    <Typography sx={{
-                                        fontWeight:600
-                                    }} variant="subtitle2">{chat.name}</Typography>
+                                    <Typography variant="subtitle2">SAM</Typography>
                                     <Typography variant="caption">Lorem ipsum dolor si</Typography>
                                 </Stack>
                             </Stack>
-                            <Stack spacing={2} alignItems={"center"}>
-                                <Typography sx={{ fontWeight: 600 }} variant="caption">{chat.time}</Typography>
-                                <Badge className="unread-count"
-                                    color="primary"
-                                    badgeContent={chat.unread}>
-                                </Badge>
+                        </Stack>
+                        <Stack p={2} direction={'row'}
+                            alignItems={"center"}
+                            justifyContent="space-between"
+                            sx={{
+                                backgroundColor: '#F8FAFF',
+
+                            }}>
+                            <Stack spacing={2} direction={'row'}>
+                                <StyledBadge overlap="circular"
+                                    anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                                    variant="dot">
+                                    <Avatar src={faker.image.avatar()}></Avatar>
+                                </StyledBadge>
+                                <Stack spacing={0.3}>
+                                    <Typography variant="subtitle2">SAM</Typography>
+                                    <Typography variant="caption">Lorem ipsum dolor si</Typography>
+                                </Stack>
                             </Stack>
                         </Stack>
-                    })}
+                    </Stack>
+                    <Stack spacing={2}>
+                        <Typography sx={{
+
+                        }} variant='subtitle2'>All chats</Typography>
+
+                        {/* Chat element */}
+                        {ChatList.filter((chat) => !chat.pinned).map((chat, index) => {
+                            return <Stack key={index} direction={'row'}
+                                alignItems={"center"}
+                                justifyContent="space-between"
+                                p={2}
+                                borderRadius={2}
+                                sx={{
+
+                                    backgroundColor: '#fff',
+
+                                }}>
+                                <Stack spacing={2} direction={'row'}>
+                                    <StyledBadge overlap="circular"
+                                        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                                        variant="dot">
+                                        <Avatar src={faker.image.avatar()}></Avatar>
+                                    </StyledBadge>
+                                    <Stack spacing={0.3}>
+                                        <Typography sx={{
+                                            fontWeight: 600
+                                        }} variant="subtitle2">{chat.name}</Typography>
+                                        <Typography variant="caption">Lorem ipsum dolor si</Typography>
+                                    </Stack>
+                                </Stack>
+                                <Stack spacing={2} alignItems={"center"}>
+                                    <Typography sx={{ fontWeight: 600 }} variant="caption">{chat.time}</Typography>
+                                    <Badge className="unread-count"
+                                        color="primary"
+                                        badgeContent={chat.unread}>
+                                    </Badge>
+                                </Stack>
+                            </Stack>
+                        })}
+                    </Stack>
                 </Stack>
 
             </Stack>
