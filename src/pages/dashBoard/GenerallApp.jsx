@@ -13,7 +13,8 @@ function GenerallApp() {
         {/* Conversation */}
         <Box sx={{
             height:'100%',
-            width:'calc(100vw - 420px)'
+            width:'100%'
+
         }}>
             <Conversation></Conversation>
         </Box>

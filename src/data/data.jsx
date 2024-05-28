@@ -184,7 +184,7 @@ const Chat_History = [
   {
     type: "msg",
     subtype: "link",
-    preview: faker.image.cats(),
+    preview: faker.image.urlLoremFlickr({ category: 'cats' }),
     message: "Yep, I can also do that",
     incoming: true,
     outgoing: false,
@@ -196,6 +196,14 @@ const Chat_History = [
     message: "Yep, I can also do that",
     incoming: false,
     outgoing: true,
+  },
+  {
+    type: "msg",
+    subtype: "reply",
+    reply: "This is a reply",
+    message: "Yep, I can also do that",
+    incoming: true,
+    outgoing: false,
   },
 ];
 
