@@ -150,7 +150,7 @@ function Chats() {
                                 backgroundColor: '#F8FAFF',
 
                             }}>
-                            <Stack spacing={2} direction={'row'}>
+                            <Stack spacing={2} direction={'row'} alignItems={'center'}>
                                 <StyledBadge overlap="circular"
                                     anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                                     variant="dot">
@@ -190,7 +190,7 @@ function Chats() {
                         {/* Chat element */}
                         {ChatList.filter((chat) => !chat.pinned).map((chat, index) => {
                             return <Stack key={index} direction={'row'}
-                                alignItems={"center"}
+                                // alignItems={"center"}
                                 justifyContent="space-between"
                                 p={2}
                                 borderRadius={2}
@@ -199,7 +199,7 @@ function Chats() {
                                     backgroundColor: '#fff',
 
                                 }}>
-                                <Stack spacing={2} direction={'row'}>
+                                <Stack spacing={2} direction={'row'} alignItems={'center'}>
                                     <StyledBadge overlap="circular"
                                         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                                         variant="dot">
@@ -212,9 +212,15 @@ function Chats() {
                                         <Typography variant="caption">Lorem ipsum dolor si</Typography>
                                     </Stack>
                                 </Stack>
-                                <Stack spacing={2} alignItems={"center"}>
+                                <Stack spacing={2} alignItems={"center"} justifyContent={'space-between'}>
                                     <Typography sx={{ fontWeight: 600 }} variant="caption">{chat.time}</Typography>
                                     <Badge className="unread-count"
+                                    sx={{
+                                        "& .MuiBadge-badge":{
+                                            position: 'relative',
+ 
+                                        }
+                                    }}
                                         color="primary"
                                         badgeContent={chat.unread}>
                                     </Badge>

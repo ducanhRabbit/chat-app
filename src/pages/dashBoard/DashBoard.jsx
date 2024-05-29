@@ -55,7 +55,6 @@ function DashBoard() {
     return (
         <div>
             <Stack direction={'row'}>
-                {/* Side Nav */}
                 <SideNav></SideNav>
                 <Outlet />
             </Stack>

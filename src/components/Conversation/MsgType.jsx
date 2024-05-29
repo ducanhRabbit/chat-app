@@ -1,12 +1,13 @@
 import { faker } from '@faker-js/faker'
-import { Box, Divider, IconButton, Link, Stack, Typography, alpha, useTheme } from '@mui/material'
-import { DownloadSimple, Image } from 'phosphor-react'
-import React from 'react'
+import { Box, Divider, IconButton, Link, Menu, MenuItem, Stack, Typography, alpha, useTheme } from '@mui/material'
+import { DotsThree, DotsThreeVertical, DownloadSimple, Image } from 'phosphor-react'
+import React, { useState } from 'react'
+import { Message_options } from '../../data/data'
 
 const TextMsg = ({ el }) => {
     const theme = useTheme()
     return (
-        <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+        <Stack spacing={1} direction={el.incoming ? 'row' : 'row-reverse'} justifyContent={el.incoming ? 'start' : 'end'}>
             <Box p={2} sx={{
                 borderRadius: '16px',
                 backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main
@@ -15,6 +16,7 @@ const TextMsg = ({ el }) => {
                     color: el.incoming ? '#000' : '#fff'
                 }}>{el.message}</Typography>
             </Box>
+            <MessageOptions></MessageOptions>
         </Stack>
     )
 }
@@ -22,7 +24,7 @@ const TextMsg = ({ el }) => {
 const LinkMsg = ({ el }) => {
     const theme = useTheme()
     return (
-        <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+        <Stack spacing={1} direction={el.incoming ? 'row' : 'row-reverse'} justifyContent={el.incoming ? 'start' : 'end'}>
             <Stack>
 
                 <Stack spacing={1} p={2} sx={{
@@ -47,6 +49,7 @@ const LinkMsg = ({ el }) => {
                     }}>{el.message}</Typography>
                 </Stack>
             </Stack>
+            <MessageOptions></MessageOptions>
         </Stack>
     )
 }
@@ -54,7 +57,7 @@ const LinkMsg = ({ el }) => {
 const ImgMsg = ({ el }) => {
     const theme = useTheme()
     return (
-        <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+        <Stack spacing={1} direction={el.incoming ? 'row' : 'row-reverse'} justifyContent={el.incoming ? 'start' : 'end'}>
             <Stack>
 
                 <Box p={2} sx={{
@@ -67,6 +70,7 @@ const ImgMsg = ({ el }) => {
                     }}>{el.message}</Typography>
                 </Box>
             </Stack>
+            <MessageOptions></MessageOptions>
         </Stack>
     )
 }
@@ -75,7 +79,7 @@ const ReplyMsg = ({ el }) => {
     const theme = useTheme()
 
     return (
-        <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+        <Stack spacing={1} direction={el.incoming ? 'row' : 'row-reverse'} justifyContent={el.incoming ? 'start' : 'end'}>
             <Stack spacing={1} p={1.5} sx={{
                 borderRadius: '16px',
                 backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main
@@ -91,6 +95,7 @@ const ReplyMsg = ({ el }) => {
                     color: el.incoming ? '#000' : '#fff'
                 }}>{el.message}</Typography>
             </Stack>
+            <MessageOptions></MessageOptions>
         </Stack>
     )
 }
@@ -98,7 +103,7 @@ const ReplyMsg = ({ el }) => {
 const DocMsg = ({ el }) => {
     const theme = useTheme()
     return (
-        <Stack direction={'row'} justifyContent={el.incoming ? 'start' : 'end'}>
+        <Stack spacing={1} direction={el.incoming ? 'row' : 'row-reverse'} justifyContent={el.incoming ? 'start' : 'end'}>
             <Box p={2} sx={{
                 borderRadius: '16px',
                 backgroundColor: el.incoming ? theme.palette.background.default : theme.palette.primary.main
@@ -125,6 +130,7 @@ const DocMsg = ({ el }) => {
                     </Typography>
                 </Stack>
             </Box>
+            <MessageOptions></MessageOptions>
         </Stack>
     )
 }
@@ -143,4 +149,43 @@ const TimeLine = ({ el }) => {
     )
 }
 
-export { TimeLine, TextMsg, ImgMsg, ReplyMsg, LinkMsg, DocMsg }
+const MessageOptions = () => {
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+    return (<>
+        <IconButton id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick}
+            sx={{
+                width: 'fit-content',
+                height: 'fit-content'
+            }}>
+            <DotsThreeVertical size={24}></DotsThreeVertical>
+        </IconButton>
+        <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+                'aria-labelledby': 'basic-button',
+            }}
+        >
+            {Message_options.map((el,index)=>{
+                return(<MenuItem key={index} onClick={handleClose}>
+                     {el.title}
+                    </MenuItem>)
+            })}
+        </Menu>
+    </>)
+}
+
+export { TimeLine, TextMsg, ImgMsg, ReplyMsg, LinkMsg, DocMsg, MessageOptions }
