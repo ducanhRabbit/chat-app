@@ -1,10 +1,12 @@
 import { Box, Stack } from '@mui/material'
 import React from 'react'
 import { Chat_History } from '../../data/data'
-import {DocMsg, ImgMsg, LinkMsg, ReplyMsg, TextMsg, TimeLine} from './MsgType'
+import {DocMsg, ImgMsg, LinkMsg, MessageOptions, ReplyMsg, TextMsg, TimeLine} from './MsgType'
 function Message() {
   return (
-    <Box p={3}>
+    <Box p={3} sx={{
+        
+    }}>
         <Stack spacing={3}>
             {
                 Chat_History.map((el)=>{
@@ -32,7 +34,7 @@ function Message() {
                 })
             }
         </Stack>
-
+            
     </Box>
   )
 }

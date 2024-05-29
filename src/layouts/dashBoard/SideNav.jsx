@@ -1,13 +1,22 @@
-import { Avatar, Box, Divider, IconButton, Stack, Switch, useColorScheme, useTheme } from '@mui/material'
+import { Avatar, Box, Divider, IconButton, Menu, MenuItem, Stack, Switch, Typography, useColorScheme, useTheme } from '@mui/material'
 import { Gear } from 'phosphor-react'
 import React, { useState } from 'react'
-import { Nav_Buttons } from '../../data/data'
+import { Nav_Buttons, Profile_Menu } from '../../data/data'
 import { faker } from '@faker-js/faker'
 
 function SideNav() {
     const theme = useTheme()
     const [tabSelected, setTabSelected] = useState(0)
     const { mode, setMode } = useColorScheme()
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (
         <Box p={2} sx={{ width: 100, height: '100vh', boxShadow: "0 0 2px rgba(0,0,0,0.25)" }}>
             <Stack direction={'column'} justifyContent={'space-between'} sx={{ height: '100%' }}>
@@ -60,7 +69,39 @@ function SideNav() {
                             setMode(mode === 'light' ? 'dark' : 'light')
                         }} ></Switch>
 
-                        <Avatar sx={{ width: '48px', height: '48px', border: `1px solid ${theme.palette.primary.main}` }} src={faker.image.avatar()}></Avatar>
+                        <Avatar id="profileOptions-btn"
+                            aria-controls={open ? 'profileOptions-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                            onClick={handleClick} sx={{ width: '48px', height: '48px', border: `1px solid ${theme.palette.primary.main}` }} src={faker.image.avatar()}></Avatar>
+                        <Menu
+                            id="profileOptions-menu"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleClose}
+                            MenuListProps={{
+                                'aria-labelledby': 'profileOptions-btn',
+                            }}
+                            anchorOrigin={{
+                                vertical:'top',
+                                horizontal:"right"
+                            }}
+                            transformOrigin={{
+                                vertical:'bottom',
+                                horizontal: 'left'
+                            }}
+                        >
+                            {Profile_Menu.map((el, index) => {
+                                return (<MenuItem key={index} onClick={handleClose}>
+                                    <Stack sx={{
+                                        width:100
+                                    }} direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
+                                        <Typography variant='body1'>{el.title}</Typography>
+                                        {el.icon}
+                                    </Stack>
+                                </MenuItem>)
+                            })}
+                        </Menu>
                     </Stack>
                 </Box>
             </Stack>
