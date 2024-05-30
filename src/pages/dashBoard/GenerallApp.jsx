@@ -3,9 +3,11 @@ import React from 'react'
 import Chats from './Chats'
 import Conversation from '../../components/Conversation/Conversation'
 import Contact from './Contact'
+import { useSelector } from 'react-redux'
 
 
 function GenerallApp() {
+  const {sideBar} = useSelector(state => state.app)
   return (
     <Stack direction={'row'} sx={{
         width:'100%'
@@ -20,7 +22,7 @@ function GenerallApp() {
             <Conversation></Conversation>
         </Box>
         {/* Contact */}
-        <Contact></Contact>
+        {sideBar.open && sideBar.type === 'CONTACT' && <Contact></Contact>}
 
     </Stack>
   )

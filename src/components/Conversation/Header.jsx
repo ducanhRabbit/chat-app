@@ -3,9 +3,11 @@ import { Avatar, Badge, Box, Divider, IconButton, Stack, Typography, styled } fr
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from 'phosphor-react';
 import React from 'react'
 import StyledBadge from '../StyledBadge';
+import { useDispatch } from 'react-redux';
+import { ToggleSidebar } from '../../redux/slices/appReducer';
 
 function Header() {
-    
+  const dispatch = useDispatch()
   return (
     <Box p={2} sx={{
         width: '100%',
@@ -13,7 +15,9 @@ function Header() {
       }}>
         <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
           {/* Left */}
-          <Stack spacing={2} direction={'row'} alignItems={'center'}>
+          <Stack onClick={()=>{
+            dispatch(ToggleSidebar())
+          }} spacing={2} direction={'row'} alignItems={'center'}>
             <StyledBadge variant='dot' anchorOrigin={{ vertical: "bottom", horizontal: "right" }} overlap='circular'>
               <Avatar src={faker.image.avatar()}></Avatar>
             </StyledBadge>

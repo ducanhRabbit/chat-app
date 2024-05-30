@@ -57,6 +57,7 @@ function Footer() {
                             ),
                             endAdornment: (
                                 <Stack sx={{ position: "relative" }}>
+  
                                     <InputAdornment position='end'>
                                         <IconButton onClick={()=>{
                                             setOpenEmoji(!openEmoji)
