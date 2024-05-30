@@ -9,26 +9,26 @@ function Message() {
     }}>
         <Stack spacing={3}>
             {
-                Chat_History.map((el)=>{
+                Chat_History.map((el,index)=>{
                     switch(el.type){
                         case "divider":
                             // Time divider
-                            return <TimeLine></TimeLine>
+                            return <TimeLine key={index}></TimeLine>
                         case "msg": switch(el.subtype){
                             case "img":
                                 // Img message
-                                return <ImgMsg el={el}></ImgMsg>
+                                return <ImgMsg key={index} el={el}></ImgMsg>
                             case "doc":
                                 // Doc message
-                                return <DocMsg el={el}></DocMsg>
+                                return <DocMsg key={index} el={el}></DocMsg>
                             case "link":
                                 // Link message
-                                return <LinkMsg el={el}></LinkMsg>
+                                return <LinkMsg key={index} el={el}></LinkMsg>
                             case "reply":
                                 // Reply Message
-                                return <ReplyMsg el={el}></ReplyMsg>
+                                return <ReplyMsg key={index} el={el}></ReplyMsg>
                             default:
-                                return <TextMsg el={el}></TextMsg>
+                                return <TextMsg key={index} el={el}></TextMsg>
                         }
                     }
                 })

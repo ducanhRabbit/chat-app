@@ -12,6 +12,8 @@ import SettingsProvider from "./contexts/settingsContext";
 
 import Chats from "./pages/dashBoard/Chats";
 import GenerallApp from "./pages/dashBoard/GenerallApp";
+import { Provider as ReduxProvider } from "react-redux";
+import { store } from "./redux/store";
 
 const router = createBrowserRouter([
   {
@@ -25,8 +27,10 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+  <ReduxProvider store={store}>
     <CssVarsProvider theme={theme}>
       <CssBaseline></CssBaseline>
       <RouterProvider router={router} />
     </CssVarsProvider>
+  </ReduxProvider>
 );
