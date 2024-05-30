@@ -4,6 +4,7 @@ import Chats from './Chats'
 import Conversation from '../../components/Conversation/Conversation'
 import Contact from './Contact'
 import { useSelector } from 'react-redux'
+import SharedMessage from '../../components/SharedMessage'
 
 
 function GenerallApp() {
@@ -22,7 +23,22 @@ function GenerallApp() {
             <Conversation></Conversation>
         </Box>
         {/* Contact */}
-        {sideBar.open && sideBar.type === 'CONTACT' && <Contact></Contact>}
+        {sideBar.open &&
+          (() => {
+            switch (sideBar.type) {
+              case "CONTACT":
+                return <Contact />;
+
+              case "STARRED":
+                break
+
+              case "SHARED":
+                return <SharedMessage/>
+
+              default:
+                break;
+            }
+          })()}
 
     </Stack>
   )

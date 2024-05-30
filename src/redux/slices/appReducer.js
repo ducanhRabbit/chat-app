@@ -15,7 +15,7 @@ const appSlice = createSlice({
         toggleSideBar: (state, action) => {
             state.sideBar.open = !state.sideBar.open
         },
-        updateStateSideBar: (state, action) => {
+        updateStateSideBarType: (state, action) => {
             state.sideBar.type = action.payload.type
         }
     }
@@ -28,6 +28,11 @@ export function ToggleSidebar() {
         dispatch(appSlice.actions.toggleSideBar())
     }
 }
+export function UpdateSidebarType(type) {
+    return async (dispatch, getState) => {
+      dispatch(appSlice.actions.updateStateSideBarType({ type }));
+    };
+  }
 
 
 // import { createSlice } from "@reduxjs/toolkit";
@@ -64,11 +69,7 @@ export function ToggleSidebar() {
 //     dispatch(slice.actions.toggleSideBar());
 //   };
 // }
-export function UpdateSidebarType(type) {
-  return async (dispatch, getState) => {
-    dispatch(slice.actions.updateSideBarType({ type }));
-  };
-}
+
 
 
 
