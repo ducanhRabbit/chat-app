@@ -2,11 +2,14 @@ import { faker } from '@faker-js/faker'
 import { Avatar, Box, Button, Divider, IconButton, Stack, Typography } from '@mui/material'
 import { Bell, CaretRight, Phone, Prohibit, Star, Trash, VideoCamera, XCircle } from 'phosphor-react'
 import React from 'react'
+import { UpdateSidebarType } from '../../redux/slices/appReducer'
+import { useDispatch } from 'react-redux'
 
 function Contact() {
+  const dispatch = useDispatch()
   return (
     <Box sx={{
-      maxHeight: '100vh',
+      height: '100vh',
       width: '320px'
     }}>
       <Stack height={'100%'}>
@@ -76,7 +79,7 @@ function Contact() {
             <Typography variant="subtitle2">Media, Links & Docs</Typography>
             <Button
               onClick={() => {
-                // dispatch(UpdateSidebarType("SHARED"));
+                dispatch(UpdateSidebarType("SHARED"));
               }}
               endIcon={<CaretRight />}
             >
@@ -103,7 +106,7 @@ function Contact() {
 
             <IconButton
               onClick={() => {
-                // dispatch(UpdateSidebarType("STARRED"));
+                dispatch(UpdateSidebarType("STARRED"));
               }}
             >
               <CaretRight />
