@@ -1,12 +1,72 @@
 import { faker } from '@faker-js/faker'
-import { Avatar, Box, Button, Divider, IconButton, Stack, Typography } from '@mui/material'
+import { Avatar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, IconButton, Slide, Stack, Typography } from '@mui/material'
 import { Bell, CaretRight, Phone, Prohibit, Star, Trash, VideoCamera, XCircle } from 'phosphor-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { UpdateSidebarType } from '../../redux/slices/appReducer'
 import { useDispatch } from 'react-redux'
 
+
+const BlockDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>Block this contact</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Are you sure you want to block this Contact?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Yes</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+const DeleteChatDialog = ({ open, handleClose }) => {
+  return (
+    <Dialog
+      open={open}
+      TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+    >
+      <DialogTitle>Delete this chat</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-slide-description">
+          Are you sure you want to delete this chat?
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleClose}>Yes</Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 function Contact() {
   const dispatch = useDispatch()
+  const [openBlock, setOpenBlock] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+
+  const handleCloseBlock = () => {
+    setOpenBlock(false);
+  }
+  const handleCloseDelete = () => {
+    setOpenDelete(false);
+  }
   return (
     <Box sx={{
       height: '100vh',
@@ -140,7 +200,7 @@ function Contact() {
           <Stack direction="row" alignItems={"center"} spacing={2}>
             <Button
               onClick={() => {
-                // setOpenBlock(true);
+                setOpenBlock(true);
               }}
               fullWidth
               startIcon={<Prohibit />}
@@ -150,7 +210,7 @@ function Contact() {
             </Button>
             <Button
               onClick={() => {
-                // setOpenDelete(true);
+                setOpenDelete(true);
               }}
               fullWidth
               startIcon={<Trash />}
@@ -162,7 +222,8 @@ function Contact() {
 
         </Stack>
       </Stack>
-
+      {openBlock && <BlockDialog open={openBlock} handleClose={handleCloseBlock} />}
+      {openDelete && <DeleteChatDialog open={openDelete} handleClose={handleCloseDelete} />}
     </Box>
   )
 }

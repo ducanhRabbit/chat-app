@@ -14,16 +14,30 @@ import Chats from "./pages/dashBoard/Chats";
 import GenerallApp from "./pages/dashBoard/GenerallApp";
 import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
+import Setting from "./pages/dashBoard/Setting";
+import Login from "./pages/auth/Login";
 
 const router = createBrowserRouter([
+  {
+    path:'/auth',
+    element: <></>,
+    children:[{
+      path:'/login',
+      element:<Login></Login>
+    }]
+  },
   {
     path: "/",
     element: <DashBoard />,
     children:[{
       index:true,
       element:<GenerallApp/>
+    },{
+      path:'/settings',
+      element:<Setting/>
     }]
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
