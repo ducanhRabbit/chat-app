@@ -16,13 +16,14 @@ import { Provider as ReduxProvider } from "react-redux";
 import { store } from "./redux/store";
 import Setting from "./pages/dashBoard/Setting";
 import Login from "./pages/auth/Login";
+import MainLayout from "./layouts/main/MainLayout";
 
 const router = createBrowserRouter([
   {
     path:'/auth',
-    element: <></>,
+    element: <MainLayout></MainLayout>,
     children:[{
-      path:'/login',
+      path:'login',
       element:<Login></Login>
     }]
   },
