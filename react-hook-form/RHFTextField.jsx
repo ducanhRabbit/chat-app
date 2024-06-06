@@ -12,7 +12,7 @@ function RHFTextField({ name, ...other }) {
                 <TextField
                     fullWidth
                     {...field}
-                    value={field.value}
+                    value={field.value || ''}
                     {...other}
                 >
 
