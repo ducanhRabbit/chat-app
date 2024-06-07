@@ -29,7 +29,9 @@ function Login() {
             }} variant='h4'>Moizz</Typography>
           </Stack>
         </Stack>
-
+        <Typography variant='h4'>
+            Login
+        </Typography>
         <Stack direction="row" spacing={0.5}>
           <Typography variant="body2">New user?</Typography>
 
@@ -41,8 +43,8 @@ function Login() {
           </Link>
         </Stack>
         <Stack spacing={2}>
-          
-        <LoginForm/>
+
+          <LoginForm />
         </Stack>
 
         <AuthSocial />

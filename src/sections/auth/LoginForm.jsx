@@ -12,12 +12,19 @@ function LoginForm() {
         email: Yup.string().required('Email is required').email('Email must be a valid email adress'),
         password: Yup.string().required('Password is required')
     })
+
+    const defaultValues = {
+        email: "demo@tawk.com",
+        password: "demo1234",
+      };
+    
     const method = useForm({
         resolver: yupResolver(loginSchema),
+        defaultValues
     })
     const onSubmit = async (data) => {
         try {
-
+            console.log(data)
         } catch (err) {
             console.log(err)
             reset()
@@ -27,6 +34,8 @@ function LoginForm() {
             })
         }
     }
+
+
 
     const {
         reset,
@@ -41,8 +50,8 @@ function LoginForm() {
         <FormProvider method={method} onSubmit={handleSubmit(onSubmit)}>
             <Stack spacing={2}>
 
-                {errors.afterSubmit && <Alert severity='error'>{errors.afterSubmit.errMessage}</Alert>}
-                <RHFTextField name="Email" label="Email"></RHFTextField>
+                {errors.afterSubmit && <Alert severity='error'>{errors?.afterSubmit?.errMessage}</Alert>}
+                <RHFTextField name="email" label="Email"></RHFTextField>
 
                 <RHFTextField
                     name="password"
@@ -73,7 +82,7 @@ function LoginForm() {
                     size="large"
                     type="submit"
                     variant="contained"
-                    // loading='true'
+                // loading='true'
                 >
                     Login
                 </LoadingButton>
