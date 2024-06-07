@@ -17,6 +17,7 @@ import { store } from "./redux/store";
 import Setting from "./pages/dashBoard/Setting";
 import Login from "./pages/auth/Login";
 import MainLayout from "./layouts/main/MainLayout";
+import Register from "./pages/auth/Register";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,9 @@ const router = createBrowserRouter([
     children:[{
       path:'login',
       element:<Login></Login>
+    },{
+      path:'register',
+      element:<Register></Register>
     }]
   },
   {
