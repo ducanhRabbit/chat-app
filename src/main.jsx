@@ -18,6 +18,8 @@ import Setting from "./pages/dashBoard/Setting";
 import Login from "./pages/auth/Login";
 import MainLayout from "./layouts/main/MainLayout";
 import Register from "./pages/auth/Register";
+import ResetPasswordForm from "./sections/auth/ResetPasswordForm";
+import ResetPassword from "./pages/auth/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,9 @@ const router = createBrowserRouter([
     },{
       path:'register',
       element:<Register></Register>
+    },{
+      path:'reset-password',
+      element:<ResetPassword></ResetPassword>
     }]
   },
   {
