@@ -4,6 +4,7 @@ import { Avatar, Badge, Box, Button, Divider, IconButton, InputBase, Stack, Typo
 import { ArchiveBox, CircleDashed, FlagBanner, MagnifyingGlass } from 'phosphor-react'
 import React from 'react'
 import { ChatList } from '../../data/data'
+import { StyledInputBase } from '../../components/Styled/Search/Search'
 
 function Chats() {
     const theme = useTheme()
@@ -26,15 +27,15 @@ function Chats() {
         justifyContent: "center",
     }));
 
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: "inherit",
-        "& .MuiInputBase-input": {
-            padding: theme.spacing(1, 1, 1, 0),
-            // vertical padding + font size from searchIcon
-            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-            width: "100%",
-        },
-    }));
+    // const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    //     color: "inherit",
+    //     "& .MuiInputBase-input": {
+    //         padding: theme.spacing(1, 1, 1, 0),
+    //         // vertical padding + font size from searchIcon
+    //         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    //         width: "100%",
+    //     },
+    // }));
 
     const StyledBadge = styled(Badge)(({ theme }) => ({
         "& .MuiBadge-badge": {
@@ -113,14 +114,15 @@ function Chats() {
                     }}>
                         <MagnifyingGlass />
                     </Box>
-                    <InputBase sx={{
+                    {/* <InputBase sx={{
                         color: "inherit",
                         "& .MuiInputBase-input": {
                             padding: theme.spacing(1, 1, 1, 0),
                             paddingLeft: `calc(1em + ${theme.spacing(4)})`,
                             width: "100%",
                         },
-                    }} placeholder='Search...' inputProps={{ "aria-label": "search" }} />
+                    }} placeholder='Search...' inputProps={{ "aria-label": "search" }} /> */}
+                    <StyledInputBase placeholder='Search...' inputProps={{ "aria-label": "search" }}></StyledInputBase>
 
                 </Box>
 
