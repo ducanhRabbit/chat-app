@@ -21,6 +21,7 @@ import Register from "./pages/auth/Register";
 import ResetPasswordForm from "./sections/auth/ResetPasswordForm";
 import ResetPassword from "./pages/auth/ResetPassword";
 import NewPassord from "./pages/auth/NewPassord";
+import GroupChat from "./pages/dashBoard/GroupChat";
 
 const router = createBrowserRouter([
   {
@@ -47,8 +48,11 @@ const router = createBrowserRouter([
       index:true,
       element:<GenerallApp/>
     },{
-      path:'/settings',
+      path:'settings',
       element:<Setting/>
+    },{
+      path:'group',
+      element:<GroupChat/>
     }]
   },
   

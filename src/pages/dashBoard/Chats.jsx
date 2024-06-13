@@ -95,36 +95,13 @@ function Chats() {
                     </IconButton>
                 </Stack>
 
-                <Box sx={{
-                    position: "relative",
-                    borderRadius: 20,
-                    backgroundColor: theme.palette.background.paper,
-                    marginRight: theme.spacing(2),
-                    marginLeft: 0,
-                    width: "100%",
-                }}>
-                    <Box sx={{
-                        padding: theme.spacing(0, 2),
-                        height: "100%",
-                        position: "absolute",
-                        pointerEvents: "none",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                    }}>
+                <Search>
+                    <SearchIconWrapper >
                         <MagnifyingGlass />
-                    </Box>
-                    {/* <InputBase sx={{
-                        color: "inherit",
-                        "& .MuiInputBase-input": {
-                            padding: theme.spacing(1, 1, 1, 0),
-                            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-                            width: "100%",
-                        },
-                    }} placeholder='Search...' inputProps={{ "aria-label": "search" }} /> */}
+                    </SearchIconWrapper>
                     <StyledInputBase placeholder='Search...' inputProps={{ "aria-label": "search" }}></StyledInputBase>
 
-                </Box>
+                </Search>
 
                 <Stack spacing={1} >
                     <Stack direction={'row'} spacing={1.5} alignItems={'center'}>
@@ -220,7 +197,6 @@ function Chats() {
                                     sx={{
                                         "& .MuiBadge-badge":{
                                             position: 'relative',
- 
                                         }
                                     }}
                                         color="primary"
