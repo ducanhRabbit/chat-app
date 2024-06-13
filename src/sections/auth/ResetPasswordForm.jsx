@@ -32,7 +32,6 @@ function ResetPasswordForm() {
 
   return (
     <FormProvider method={methods} onSubmit={handleSubmit(onSubmit)}>
-      {/* <RHFTextField name="email" label="Email address" /> */}
       <RHFTextField name="email" label="Email address" />
       <LoadingButton
         fullWidth
