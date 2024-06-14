@@ -17,12 +17,21 @@ import {
   StyledInputBase,
 } from "../../components/Styled/Search/Search";
 import { ChatList } from "../../data/data";
-import StyledBadge from "../../components/StyledBadge";
 import { faker } from "@faker-js/faker";
 import Conversation from "../../components/Conversation/Conversation";
-
+import { useState } from "react";
+import CreateGroup from '../../sections/dashBoard/CreateGroup'
+import { StyledBadge } from "../../components/Styled/Common/Badge";
 function GroupChat() {
   const theme = useTheme();
+  const [openDialog, setOpenDialog] = useState(false)
+
+  const handleOpenDialog = ()=>{
+    setOpenDialog(true)
+  }
+  const handleCloseDialog = ()=>{
+    setOpenDialog(false)
+  }
   return (
     <>
       <Stack direction="row" sx={{ width: "100%" }}>
@@ -64,7 +73,7 @@ function GroupChat() {
               <Typography variant="subtitle2" sx={{}} component={Link}>
                 Create New Group
               </Typography>
-              <IconButton>
+              <IconButton onClick={handleOpenDialog}>
                 <Plus style={{ color: theme.palette.primary.main }} />
               </IconButton>
             </Stack>
@@ -149,14 +158,14 @@ function GroupChat() {
         {/* Right */}
         {/* Conversation component */}
         <Box sx={{
-            height:'100%',
-            flexGrow:1
+          height: '100%',
+          flexGrow: 1
 
         }}>
-            <Conversation></Conversation>
+          <Conversation></Conversation>
         </Box>
       </Stack>
-      {/* {openDialog && <CreateGroup open={openDialog} handleClose={handleCloseDialog} />} */}
+      {openDialog && <CreateGroup open={openDialog} handleClose={handleCloseDialog} />}
     </>
   );
 }
