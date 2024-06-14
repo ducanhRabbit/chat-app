@@ -1,7 +1,8 @@
 import { Dialog, DialogContent, DialogTitle } from '@mui/material';
 import React from 'react'
+import CreateGroupForm from './CreateGroupForm';
 
-function CreateGroup() {
+function CreateGroup({handleClose , open}) {
     return (
         <Dialog
           fullWidth
@@ -15,9 +16,9 @@ function CreateGroup() {
         >
           <DialogTitle>{"Create New Group"}</DialogTitle>
     
-          <DialogContent sx={{ mt: 4 }}>
+          <DialogContent sx={{pt:4 }}>
             {/* Create Group Form */}
-            {/* <CreateGroupForm handleClose={handleClose} /> */}
+            <CreateGroupForm handleClose={handleClose} />
           </DialogContent>
         </Dialog>
       );

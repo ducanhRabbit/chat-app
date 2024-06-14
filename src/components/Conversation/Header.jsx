@@ -2,9 +2,9 @@ import { faker } from '@faker-js/faker';
 import { Avatar, Badge, Box, Divider, IconButton, Stack, Typography, styled } from '@mui/material'
 import { CaretDown, MagnifyingGlass, Phone, VideoCamera } from 'phosphor-react';
 import React from 'react'
-import StyledBadge from '../StyledBadge';
 import { useDispatch } from 'react-redux';
 import { ToggleSidebar } from '../../redux/slices/appReducer';
+import { StyledBadge } from '../Styled/Common/Badge';
 
 function Header() {
   const dispatch = useDispatch()
