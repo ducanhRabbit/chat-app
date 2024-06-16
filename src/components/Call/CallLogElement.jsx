@@ -48,7 +48,7 @@ function CallLogElement() {
                     <Phone></Phone>
                 </IconButton>
                 <IconButton size='medium'>
-                    <Camera></Camera>
+                    <VideoCamera></VideoCamera>
                 </IconButton>
 
                 </Stack>
