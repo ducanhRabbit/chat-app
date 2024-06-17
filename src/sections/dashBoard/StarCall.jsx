@@ -1,22 +1,23 @@
-import { Dialog, DialogContent, DialogTitle, Stack } from '@mui/material';
-import React from 'react'
+import { Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
+import React from "react";
+import CallElement from "../../components/Call/CallElement";
 
-function StarCall({handleClose, open}) {
-    const friendData = [...Array(6)]
-    return (
-        <Dialog
-          fullWidth
-          maxWidth="xs"
-          open={open}
-        //   TransitionComponent={Transition}
-          keepMounted
-          onClose={handleClose}
-          aria-describedby="alert-dialog-slide-description"
-          sx={{ p: 4 }}
-        >
-          <DialogTitle>{"Start New Conversation"}</DialogTitle>
-          <Stack p={1} sx={{ width: "100%" }}>
-            {/* <Search>
+function StarCall({ handleClose, open }) {
+  const friendData = [...Array(6)];
+  return (
+    <Dialog
+      fullWidth
+      maxWidth="xs"
+      open={open}
+      //   TransitionComponent={Transition}
+      keepMounted
+      onClose={handleClose}
+      aria-describedby="alert-dialog-slide-description"
+      sx={{ p: 4 }}
+    >
+      <DialogTitle>{"Start New Conversation"}</DialogTitle>
+      {/* <Stack p={1} sx={{ width: "100%" }}>
+        <Search>
               <SearchIconWrapper>
                 <MagnifyingGlass color="#709CE6" />
               </SearchIconWrapper>
@@ -24,19 +25,21 @@ function StarCall({handleClose, open}) {
                 placeholder="Search…"
                 inputProps={{ "aria-label": "search" }}
               />
-            </Search> */}
+            </Search>
+      </Stack> */}
+      <DialogContent>
+        <Stack sx={{ height: "100%" }}>
+          <Stack spacing={1}>
+            {friendData.map((el, index) => {
+              return (
+                <CallElement key={index} {...el} handleClose={handleClose} />
+              );
+            })}
           </Stack>
-          <DialogContent>
-            <Stack sx={{ height: "100%" }}>
-              <Stack spacing={2.4}>
-                {friendData.map((el, index) => {
-                  return <CallElement key={index} {...el} handleClose={handleClose} />;
-                })}
-              </Stack>
-            </Stack>
-          </DialogContent>
-        </Dialog>
-      );
+        </Stack>
+      </DialogContent>
+    </Dialog>
+  );
 }
 
-export default StarCall
+export default StarCall;

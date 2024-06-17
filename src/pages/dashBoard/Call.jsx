@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Search, SearchIconWrapper, StyledInputBase } from '../../components/Styled/Search/Search';
 import { MagnifyingGlass, Phone } from 'phosphor-react';
 import CallLogElement from '../../components/Call/CallLogElement';
+import StarCall from '../../sections/dashBoard/StarCall';
 
 function Call() {
     const [openDialog,setOpenDialog] = useState(false)
@@ -55,7 +56,7 @@ function Call() {
                   alignItems={"center"}
                   direction={"row"}
                 >
-                  <Typography variant="subtitle2" sx={{}} component={Link}>
+                  <Typography onClick={handleOpenDialog} variant="subtitle2" sx={{}} component={Link}>
                     Start a conversation
                   </Typography>
                 </Stack>
@@ -70,6 +71,7 @@ function Call() {
               </Stack>
             </Box>
           </Stack>
+          {openDialog && <StarCall open={openDialog} handleClose={handleCloseDialog}></StarCall>}
         </>
       );
 }
