@@ -29,24 +29,29 @@ function Login() {
             }} variant='h4'>Moizz</Typography>
           </Stack>
         </Stack>
-        <Typography variant='h4'>
+        <Stack spacing={0.5}>
+          <Typography sx={{
+            fontWeight: 600
+          }} variant='h4'>
             Login
-        </Typography>
-        <Stack direction="row" spacing={0.5}>
-          <Typography variant="body2">New user?</Typography>
+          </Typography>
+          <Stack direction="row" spacing={0.5}>
+            <Typography variant="body2">New user?</Typography>
 
-          <Link
-            to={"/auth/register"}
-            variant="subtitle2"
-          >
-            Create an account
-          </Link>
+            <Link
+              to={"/auth/register"}
+              variant="subtitle2"
+            >
+              Create an account
+            </Link>
+          </Stack>
         </Stack>
-        <Stack spacing={2}>
+        <Stack sx={{
+          mt: '28px!important'
+        }} spacing={2}>
 
           <LoginForm />
         </Stack>
-
         <AuthSocial />
       </Stack>
     </Stack>

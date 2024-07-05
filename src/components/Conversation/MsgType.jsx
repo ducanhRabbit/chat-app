@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { Box, Divider, IconButton, Link, Menu, MenuItem, Stack, Typography, alpha, useTheme } from '@mui/material'
-import { DotsThree, DotsThreeVertical, DownloadSimple, Image } from 'phosphor-react'
+import {  DotsThreeVertical, DownloadSimple, Image } from 'phosphor-react'
 import React, { useState } from 'react'
 import { Message_options } from '../../data/data'
 
@@ -153,14 +153,14 @@ const MessageOptions = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-      setAnchorEl(null);
+        setAnchorEl(null);
     };
     return (<>
-        <IconButton id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
+        <IconButton id="messageOptions-btn"
+            aria-controls={open ? 'messageOptions-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick}
@@ -171,18 +171,18 @@ const MessageOptions = () => {
             <DotsThreeVertical size={24}></DotsThreeVertical>
         </IconButton>
         <Menu
-            id="basic-menu"
+            id="messageOptions-menu"
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
             MenuListProps={{
-                'aria-labelledby': 'basic-button',
+                'aria-labelledby': 'messageOptions-btn',
             }}
         >
-            {Message_options.map((el,index)=>{
-                return(<MenuItem key={index} onClick={handleClose}>
-                     {el.title}
-                    </MenuItem>)
+            {Message_options.map((el, index) => {
+                return (<MenuItem key={index} onClick={handleClose}>
+                    {el.title}
+                </MenuItem>)
             })}
         </Menu>
     </>)

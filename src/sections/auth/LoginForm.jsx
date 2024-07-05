@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import FormProvider from '../../../react-hook-form/FormProvider'
 import RHFTextField from '../../../react-hook-form/RHFTextField'
 import { useForm } from 'react-hook-form'
-import { Alert, IconButton, InputAdornment, Stack } from '@mui/material'
+import { Alert, IconButton, InputAdornment, Link, Stack } from '@mui/material'
 import { Eye, EyeSlash } from 'phosphor-react'
 import { LoadingButton } from '@mui/lab'
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useDispatch } from 'react-redux'
+import { Login } from '../../redux/slices/auth'
 function LoginForm() {
+    const dispatch = useDispatch()
     const loginSchema = Yup.object().shape({
         email: Yup.string().required('Email is required').email('Email must be a valid email adress'),
         password: Yup.string().required('Password is required')
@@ -25,6 +28,7 @@ function LoginForm() {
     const onSubmit = async (data) => {
         try {
             console.log(data)
+            dispatch(Login(data))
         } catch (err) {
             console.log(err)
             reset()
@@ -34,8 +38,6 @@ function LoginForm() {
             })
         }
     }
-
-
 
     const {
         reset,
@@ -70,11 +72,11 @@ function LoginForm() {
                         ),
                     }}
                 />
-                {/* <Stack alignItems="flex-end" sx={{ my: 2 }}>
-                <Link component={RouterLink} to="/auth/reset-password" variant="body2" color="inherit" underline="always">
+                <Stack alignItems="flex-end" sx={{ my: 2 }}>
+                <Link  to="/auth/reset-password" variant="body2" >
                     Forgot password?
                 </Link>
-            </Stack> */}
+            </Stack>
 
                 <LoadingButton
                     fullWidth

@@ -12,7 +12,13 @@ const theme = extendTheme({
         },
         salmon:{
           main: '#5c0099'
-        }
+        },
+        brown: defaultTheme.palette.augmentColor({
+          color: {
+            main: "#A52A2A"
+          },
+          name: "brown"
+        })
       },
     },
   },

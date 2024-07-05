@@ -3,14 +3,46 @@ import { Gear } from 'phosphor-react'
 import React, { useState } from 'react'
 import { Nav_Buttons, Profile_Menu } from '../../data/data'
 import { faker } from '@faker-js/faker'
+import { useNavigate } from 'react-router-dom'
 
 function SideNav() {
     const theme = useTheme()
     const [tabSelected, setTabSelected] = useState(0)
     const { mode, setMode } = useColorScheme()
-
+    const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
+
+    const getPath = (index)=>{
+        switch(index){
+            case 0:{
+                return "/"
+            };
+            case 1:{
+                return "/group"
+            };
+            case 2:{
+                return "/call"
+            };
+            case 3:{
+                return "/settings"
+            }
+        }
+    }
+
+    const getMenuPath = (index)=>{
+        switch(index){
+            case 0:{
+                return '/profile'
+            };
+            case 1:{
+                return '/settings'
+            };
+            case 2:{
+                return '/auth/login'
+            }
+        }
+    }
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -34,12 +66,14 @@ function SideNav() {
                             return tabSelected === btn.index ? <Box key={index} p={1} sx={{ backgroundColor: theme.palette.primary.main, borderRadius: '12px' }}>
                                 <IconButton onClick={() => {
                                     setTabSelected(index)
+                  
                                 }} sx={{ width: 'max-content', color: '#fff' }} key={index}>
                                     {btn.icon}
                                 </IconButton>
                             </Box> : <Box key={index} p={1} sx={{ borderRadius: '12px' }}>
                                 <IconButton onClick={() => {
                                     setTabSelected(index)
+                                    navigate(getPath(index))
                                 }} sx={{ width: 'max-content' }} key={index}>
                                     {btn.icon}
                                 </IconButton>
@@ -49,12 +83,14 @@ function SideNav() {
                         {tabSelected === 3 ? <Box p={1} sx={{ backgroundColor: theme.palette.primary.main, borderRadius: '12px' }}>
                             <IconButton onClick={() => {
                                 setTabSelected(3)
+   
                             }} sx={{ color: '#fff' }}>
                                 <Gear />
                             </IconButton>
                         </Box> : <Box p={1} sx={{ borderRadius: '12px' }}>
                             <IconButton onClick={() => {
                                 setTabSelected(3)
+                                navigate(getPath(3))
                             }} sx={{ width: 'max-content' }}>
                                 <Gear />
                             </IconButton>
@@ -83,18 +119,21 @@ function SideNav() {
                                 'aria-labelledby': 'profileOptions-btn',
                             }}
                             anchorOrigin={{
-                                vertical:'top',
-                                horizontal:"right"
+                                vertical: 'top',
+                                horizontal: "right"
                             }}
                             transformOrigin={{
-                                vertical:'bottom',
+                                vertical: 'bottom',
                                 horizontal: 'left'
                             }}
                         >
                             {Profile_Menu.map((el, index) => {
-                                return (<MenuItem key={index} onClick={handleClose}>
+                                return (<MenuItem key={index} onClick={()=>{
+                                    handleClick(el)
+                                    navigate(getMenuPath(index))
+                                }}>
                                     <Stack sx={{
-                                        width:100
+                                        width: 100
                                     }} direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                                         <Typography variant='body1'>{el.title}</Typography>
                                         {el.icon}

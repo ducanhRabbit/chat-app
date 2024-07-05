@@ -23,6 +23,7 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import NewPassord from "./pages/auth/NewPassord";
 import GroupChat from "./pages/dashBoard/GroupChat";
 import Call from "./pages/dashBoard/Call";
+import Profile from "./pages/dashBoard/Profile";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,9 @@ const router = createBrowserRouter([
     },{
       path:'call',
       element:<Call/>
+    },{
+      path:'profile',
+      element:<Profile/>
     }]
   },
   
