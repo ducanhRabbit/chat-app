@@ -58,3 +58,46 @@ export function Login(formValue){
        
     }
 }
+
+export function LogOutUser(){
+    return async (dispatch,getState) => {
+        dispatch(LogOutUser())
+    }
+}
+
+export function forgotPassword(formValues){
+    return async (dispatch,getState) =>{
+        try{
+            await axios.post('/auth/forgotPassword',{
+                ...formValues
+            },{
+                headers:{
+                    "Content-Type": "application/json",
+                }
+            })
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
+
+export function resetPassword(formValues){
+    return async (dispatch,getState)=>{
+        try{
+            const res = await axios.post('/auth/resetPassword',{
+                ...formValues
+            },{
+                headers:{
+                    "Content-Type": "application/json",
+                }
+            })
+            console.log(res)
+            dispatch(auth.actions.logIn({
+                isLoggedIn:true,
+                token: res.data.token
+            }))
+        }catch(err){
+            console.log(err)
+        }
+    }
+}
