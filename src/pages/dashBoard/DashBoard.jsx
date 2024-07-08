@@ -11,9 +11,9 @@ function DashBoard() {
     const dispatch = useDispatch()
     const {isLoggedIn} = useSelector(state => state.auth)
 
-    if(!isLoggedIn){
-        return <Navigate to={'/app'}></Navigate>
-    }
+    // if(!isLoggedIn){
+    //     return <Navigate to={'/'}></Navigate>
+    // }
     return (
         <div>
             <Stack direction={'row'}>
